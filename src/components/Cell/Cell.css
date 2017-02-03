@@ -1,0 +1,18 @@
+.Cell {
+    border: 1px solid #537990;
+    font-size: 40px;
+    padding: 20px;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+    color: black;
+    background-color: lightgoldenrodyellow;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.Cell i {
+    line-height: 100px;
+}

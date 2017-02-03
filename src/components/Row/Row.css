@@ -1,0 +1,9 @@
+.Row {
+    font-size: 0;
+    line-height: 100px;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    cursor: pointer;
+}
