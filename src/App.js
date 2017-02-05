@@ -28,11 +28,11 @@ class App extends Component {
                 for (let i = 0; i < changeArr.length; i++) {
                     for (let j = 0; j < changeArr[0].length; j++) {
                         if (isFree(i, j)) {
-                            randomArray.push( {i:i,j:j} );
+                            randomArray.push({ i: i, j: j });
                         }
                     }
                 }
-                let randomValue = randomArray[Math.floor(Math.random()*changeArr.length)]
+                let randomValue = randomArray[Math.floor(Math.random() * changeArr.length)]
                 if (randomValue) changeArr[randomValue.i][randomValue.j] = false;
             }
             let userExecuteStep = false;
@@ -55,7 +55,7 @@ class App extends Component {
                 }
                 //second step
                 if (changeArr[1][1]) {
-                            randomClick();
+                    randomClick();
                     // if (!computerExecuteStep && row === 0 && col === 1) {
                     //     if (isFree(2, 1)) {
                     //         changeArr[2][1] = false;
