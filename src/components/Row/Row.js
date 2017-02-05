@@ -16,9 +16,9 @@ class Row extends Component {
     render() {
         return (
             <div className="Row">
-                <Cell check={this.props.check[0]} column="1" isToggleOn={this.isToggleOn}/>
-                <Cell check={this.props.check[1]} column="2" isToggleOn={this.isToggleOn}/>
-                <Cell check={this.props.check[2]} column="3" isToggleOn={this.isToggleOn}/>
+                <Cell check={this.props.check[0]} column="0" isToggleOn={this.isToggleOn}/>
+                <Cell check={this.props.check[1]} column="1" isToggleOn={this.isToggleOn}/>
+                <Cell check={this.props.check[2]} column="2" isToggleOn={this.isToggleOn}/>
             </div>
         );
     }
