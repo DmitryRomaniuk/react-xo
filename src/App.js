@@ -21,7 +21,7 @@ class App extends Component {
         this.setState(function (prevState) {
             let changeArr = [...prevState.check];
             function isFree(row, col) {
-                return !!(changeArr[row][col] !== true && changeArr[row][col] !== false)
+                return (changeArr[row][col] !== true && changeArr[row][col] !== false)
             }
             function randomClick() {
                 let randomArray = [];
@@ -32,8 +32,13 @@ class App extends Component {
                         }
                     }
                 }
-                let randomValue = randomArray[Math.floor(Math.random() * changeArr.length)]
+                let randomValue = randomArray[Math.floor(Math.random() * changeArr.length)];
                 if (randomValue) changeArr[randomValue.i][randomValue.j] = false;
+            }
+            function findBestStep() {
+                changeArr.forEach(row => {
+                    if ()
+                })
             }
             let userExecuteStep = false;
             let computerExecuteStep = false;
@@ -55,7 +60,12 @@ class App extends Component {
                 }
                 //second step
                 if (changeArr[1][1]) {
-                    randomClick();
+                    if (!computerExecuteStep) {
+                        bestSteps = [];
+
+                        randomClick();
+                        computerExecuteStep = true;
+                    }
                     // if (!computerExecuteStep && row === 0 && col === 1) {
                     //     if (isFree(2, 1)) {
                     //         changeArr[2][1] = false;
