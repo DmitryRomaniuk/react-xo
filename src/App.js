@@ -8,7 +8,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            check: [[null, null, null], [null, null, null], [null, null, null]]
+            check: [[null, null, null], [null, null, null], [null, null, null]],
+            area: [].concat((()=>{let a = [];a.length = 9;return a.fill(null)})())
         };
         this.isToggle = this.isToggle.bind(this);
     }
@@ -34,11 +35,6 @@ class App extends Component {
                 }
                 let randomValue = randomArray[Math.floor(Math.random() * changeArr.length)];
                 if (randomValue) changeArr[randomValue.i][randomValue.j] = false;
-            }
-            function findBestStep() {
-                changeArr.forEach(row => {
-                    if ()
-                })
             }
             let userExecuteStep = false;
             let computerExecuteStep = false;
