@@ -22,6 +22,7 @@ class App extends Component {
     isToggle(row, col) {
         this.setState(function (prevState) {
             let changeArr = [...prevState.check];
+            let game = new Game(changeArr,'o');
             function isFree(row, col) {
                 return (changeArr[row][col] !== true && changeArr[row][col] !== false)
             }
