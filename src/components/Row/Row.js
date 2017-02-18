@@ -8,17 +8,16 @@ class Row extends Component {
         this.isToggleOn = this.isToggleOn.bind(this);
     }
 
-    isToggleOn(column) {
-        let row = this.props.row;
-        this.props.isToggle(row,column)
+    isToggleOn(cell) {
+        this.props.isToggle(cell)
     }
 
     render() {
         return (
             <div className="Row">
-                <Cell check={this.props.check[0]} column="0" isToggleOn={this.isToggleOn}/>
-                <Cell check={this.props.check[1]} column="1" isToggleOn={this.isToggleOn}/>
-                <Cell check={this.props.check[2]} column="2" isToggleOn={this.isToggleOn}/>
+                <Cell check={this.props.check} cell={0 + +this.props.row} isToggleOn={this.isToggleOn}/>
+                <Cell check={this.props.check} cell={1 + +this.props.row} isToggleOn={this.isToggleOn}/>
+                <Cell check={this.props.check} cell={2 + +this.props.row} isToggleOn={this.isToggleOn}/>
             </div>
         );
     }

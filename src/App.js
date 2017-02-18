@@ -9,8 +9,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            check: [[null, null, null], [null, null, null], [null, null, null]],
-            area: [].concat((()=>{return new Array(9)})().fill(null))
+            // check: [[null, null, null], [null, null, null], [null, null, null]],
+            check: [].concat((()=>{return new Array(9)})().fill(null))
         };
         this.isToggle = this.isToggle.bind(this);
     }
@@ -19,67 +19,52 @@ class App extends Component {
         console.log('this is:', this);
     }
 
-    isToggle(row, col) {
+    isToggle(cell) {
         this.setState(function (prevState) {
             let changeArr = [...prevState.check];
             let game = new Game(changeArr,'o');
-            function isFree(row, col) {
-                return (changeArr[row][col] !== true && changeArr[row][col] !== false)
+            function isFree(cell) {
+                return (changeArr[cell] !== 'x' && changeArr[cell] !== 'o')
             }
-            function randomClick() {
-                let randomArray = [];
-                for (let i = 0; i < changeArr.length; i++) {
-                    for (let j = 0; j < changeArr[0].length; j++) {
-                        if (isFree(i, j)) {
-                            randomArray.push({ i: i, j: j });
-                        }
-                    }
-                }
-                let randomValue = randomArray[Math.floor(Math.random() * changeArr.length)];
-                if (randomValue) changeArr[randomValue.i][randomValue.j] = false;
-            }
+            // function randomClick() {
+            //     let randomArray = [];
+            //     for (let i = 0; i < changeArr.length; i++) {
+            //         for (let j = 0; j < changeArr[0].length; j++) {
+            //             if (isFree(i, j)) {
+            //                 randomArray.push({ i: i, j: j });
+            //             }
+            //         }
+            //     }
+            //     let randomValue = randomArray[Math.floor(Math.random() * changeArr.length)];
+            //     if (randomValue) changeArr[randomValue.i][randomValue.j] = false;
+            // }
             let userExecuteStep = false;
             let computerExecuteStep = false;
-            if (changeArr[row][col] !== true && changeArr[row][col] !== false) {
-                changeArr[row][col] = !changeArr[row][col];
+            console.log(changeArr[cell]);
+            if (changeArr[cell] !== 'x' && changeArr[cell] !== 'o') {
+            console.log('x');
+                changeArr[cell] = 'x';
                 userExecuteStep = true;
             }
-            console.log(row, col);
+            console.log(cell);
             // here computer execute step
-            if (userExecuteStep) {
+            if (!userExecuteStep) {
                 //first step
-                if (!computerExecuteStep && isFree(1, 1)) {
-                    changeArr[1][1] = false;
+                if (!computerExecuteStep && isFree(4)) {
+                    changeArr[4] = 'x';
                     computerExecuteStep = true;
                 }
-                if (!computerExecuteStep && isFree(0, 0)) {
-                    changeArr[0][0] = false;
+                if (!computerExecuteStep && isFree(0)) {
+                    changeArr[0] = 'o';
                     computerExecuteStep = true;
                 }
                 //second step
-                if (changeArr[1][1]) {
+                if (changeArr[4]) {
                     if (!computerExecuteStep) {
-                        bestSteps = [];
-
-                        randomClick();
+                        let bestSteps = game.getBestAIStep()[0];
+                        changeArr[bestSteps] = 'o';
                         computerExecuteStep = true;
                     }
-                    // if (!computerExecuteStep && row === 0 && col === 1) {
-                    //     if (isFree(2, 1)) {
-                    //         changeArr[2][1] = false;
-                    //         computerExecuteStep = true;
-                    //     } else {
-                    //         randomClick();
-                    //         computerExecuteStep = true;
-                    //     }
-                    // }
-                    // if (!computerExecuteStep && changeArr[1][1] && changeArr[1][1] !== false
-                    //     && isFree(0, 0)) {
-                    //     changeArr[0][0] = false;
-                    //     computerExecuteStep = true;
-                    // }
-                }
-                if (changeArr[1][1] === false) {
                 }
             }
             return {
@@ -87,12 +72,7 @@ class App extends Component {
             };
         });
     }
-
-    // componentWillUnmount() {
-    //     this.setState({
-    //         check: [[true,false,false],[false,false,false],[false,false,true]]
-    //     });
-    // }
+    
     render() {
         return (
             <div className="App">
@@ -109,15 +89,15 @@ class App extends Component {
                 <div className="App-intro">
                     <div>
                         <div>
-                            <Row check={this.state.check[0]} row="0" isToggle={this.isToggle}>
+                            <Row check={this.state} row="0" isToggle={this.isToggle}>
                             </Row>
                         </div>
                         <div>
-                            <Row check={this.state.check[1]} row="1" isToggle={this.isToggle}>
+                            <Row check={this.state} row="3" isToggle={this.isToggle}>
                             </Row>
                         </div>
                         <div>
-                            <Row check={this.state.check[2]} row="2" isToggle={this.isToggle}>
+                            <Row check={this.state} row="6" isToggle={this.isToggle}>
                             </Row>
                         </div>
                     </div>

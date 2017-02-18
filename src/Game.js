@@ -23,15 +23,15 @@ class Game {
     }).filter(elem => {return elem})[0] || 'first step in the game';
     //here first output from function getBestAIStep()
     if (player2 === 'first step in the game') {return (this.arr[4])? 0:4}
-    if (player1 == this.O) {[player1,player2]=[player2,player1]}
+    if (player1 === this.O) {[player1,player2]=[player2,player1]}
     return allArr.map(elem => {
       let countP1, countP2, countZeroCell, lastZero;
       elem.forEach(item => {
-        if (this.arr[item] == player1) {countP1++}
-        if (this.arr[item] == player2) {countP2++}
+        if (this.arr[item] === player1) {countP1++}
+        if (this.arr[item] === player2) {countP2++}
         if (!this.arr[item]) {countZeroCell++; lastZero = item}
       });
-      if ((countP1 == 2 || countP2 == 2) && countZeroCell == 1) {
+      if ((countP1 === 2 || countP2 === 2) && countZeroCell === 1) {
         return lastZero
       } else {
         return undefined
@@ -40,3 +40,5 @@ class Game {
   }
 
 }
+
+export default Game;
