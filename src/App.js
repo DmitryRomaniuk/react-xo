@@ -2,6 +2,7 @@
 import logo from './logo.svg';
 import NavBar from './components/NavBar/NavBar';
 import Row from './components/Row/Row';
+import Game from './Game';
 import './App.css';
 
 class App extends Component {
