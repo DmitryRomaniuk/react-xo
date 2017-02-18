@@ -9,7 +9,7 @@ class App extends Component {
         super(props);
         this.state = {
             check: [[null, null, null], [null, null, null], [null, null, null]],
-            area: [].concat((()=>{let a = [];a.length = 9;return a.fill(null)})())
+            area: [].concat((()=>{return new Array(9)})().fill(null))
         };
         this.isToggle = this.isToggle.bind(this);
     }
