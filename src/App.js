@@ -9,8 +9,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // check: [[null, null, null], [null, null, null], [null, null, null]],
-            check: [].concat((()=>{return new Array(9)})().fill(null))
+            check: [].concat((() => { return new Array(9) })().fill(null))
         };
         this.isToggle = this.isToggle.bind(this);
     }
@@ -22,49 +21,22 @@ class App extends Component {
     isToggle(cell) {
         this.setState(function (prevState) {
             let changeArr = [...prevState.check];
-            let game = new Game(changeArr,'o');
-            function isFree(cell) {
-                return (changeArr[cell] !== 'x' && changeArr[cell] !== 'o')
-            }
-            // function randomClick() {
-            //     let randomArray = [];
-            //     for (let i = 0; i < changeArr.length; i++) {
-            //         for (let j = 0; j < changeArr[0].length; j++) {
-            //             if (isFree(i, j)) {
-            //                 randomArray.push({ i: i, j: j });
-            //             }
-            //         }
-            //     }
-            //     let randomValue = randomArray[Math.floor(Math.random() * changeArr.length)];
-            //     if (randomValue) changeArr[randomValue.i][randomValue.j] = false;
-            // }
             let userExecuteStep = false;
             let computerExecuteStep = false;
-            console.log(changeArr[cell]);
             if (changeArr[cell] !== 'x' && changeArr[cell] !== 'o') {
-            console.log('x');
                 changeArr[cell] = 'x';
                 userExecuteStep = true;
             }
-            console.log(cell);
             // here computer execute step
-            if (!userExecuteStep) {
-                //first step
-                if (!computerExecuteStep && isFree(4)) {
-                    changeArr[4] = 'x';
+            if (userExecuteStep) {
+                if (!computerExecuteStep) {
+                    let game = new Game(changeArr, 'o');
+                    let bestSteps = game.getBestAIStep()[0];
+                    console.log(game.getBestAIStep());
+                    if (bestSteps !== undefined) {changeArr[bestSteps] = 'o'
+                    console.log(bestSteps);
+                    console.log(changeArr);}
                     computerExecuteStep = true;
-                }
-                if (!computerExecuteStep && isFree(0)) {
-                    changeArr[0] = 'o';
-                    computerExecuteStep = true;
-                }
-                //second step
-                if (changeArr[4]) {
-                    if (!computerExecuteStep) {
-                        let bestSteps = game.getBestAIStep()[0];
-                        changeArr[bestSteps] = 'o';
-                        computerExecuteStep = true;
-                    }
                 }
             }
             return {
@@ -72,7 +44,7 @@ class App extends Component {
             };
         });
     }
-    
+
     render() {
         return (
             <div className="App">
@@ -89,15 +61,15 @@ class App extends Component {
                 <div className="App-intro">
                     <div>
                         <div>
-                            <Row check={this.state} row="0" isToggle={this.isToggle}>
+                            <Row check={this.state.check} row="0" isToggle={this.isToggle}>
                             </Row>
                         </div>
                         <div>
-                            <Row check={this.state} row="3" isToggle={this.isToggle}>
+                            <Row check={this.state.check} row="3" isToggle={this.isToggle}>
                             </Row>
                         </div>
                         <div>
-                            <Row check={this.state} row="6" isToggle={this.isToggle}>
+                            <Row check={this.state.check} row="6" isToggle={this.isToggle}>
                             </Row>
                         </div>
                     </div>
