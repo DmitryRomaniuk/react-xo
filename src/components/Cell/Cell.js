@@ -7,7 +7,6 @@ class Cell extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick(){
-        console.log(this.props.cell)
         this.props.isToggleOn(this.props.cell);
         // this.setState(prevState => ({
         //     isToggleOn: !prevState.isToggleOn
@@ -17,7 +16,7 @@ class Cell extends Component {
         return (
             <div className="Cell" onClick={this.handleClick}>
                 <i className={(this.props.check[this.props.cell]==='x')?"fa fa-times":
-                (this.props.check[this.props.cell]==='o')?"fa fa-circle-o":"fa"} aria-hidden="true"></i>
+                (this.props.check[this.props.cell]==='o')?"fa fa-circle-o":"fa"} aria-hidden="true"/>
                 {/*<i className={(this.props.check)?"fa fa-check":"fa fa-times"} aria-hidden="true"></i>*/}
                 {/*<i className="fa fa-times" aria-hidden="true"></i>*/}
             </div>
