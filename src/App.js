@@ -61,7 +61,7 @@ class App extends Component {
                 <div className="App-intro">
                     <div>
                         {[0, 1, 2].map(item => {
-                            return <div><Row check={this.state.check} row={item * 3} key={item+100}
+                            return <div key={item+100}><Row check={this.state.check} row={item * 3}
                                              isToggle={this.isToggle}/></div>
                         })}
                     </div>
